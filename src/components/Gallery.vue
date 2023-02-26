@@ -1,8 +1,8 @@
 <template>
   <div class="gallery">
-    <img src="~@/assets/images/bunny.png" class="bunny" />
+    <img src="~@/assets/images/기러기.png" class="bunny" />
     <div class="description">
-      photo gallery
+      우리 추억들
     </div>
     <div></div>
     <div class="gallery-container" ref="gal">

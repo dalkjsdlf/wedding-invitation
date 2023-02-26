@@ -2,16 +2,18 @@
   <div id="app">
     <FlowerRain />
     <IntroMovie />
+    
     <Live />
     <WdDivider />
     <Gallery />
     <WdDivider />
-    <Celebrate @click="handleClick" :presents="presents" />
-    <WdDivider />
+    <!-- <Celebrate @click="handleClick" :presents="presents" />
+    <WdDivider />-->
     <Map />
     <WdDivider />
-    <Funding />
-    <WdDivider />
+    <Bus/>
+    <!--<Funding />
+    <WdDivider />-->
     <div style="display: none">
      <!-- <Credit /> -->
     </div>
@@ -34,11 +36,12 @@ import MessageButton from "./components/MessageButton.vue";
 import Live from "./components/Live.vue";
 import WdDivider from './components/WdDivider.vue';
 import Gallery from "./components/Gallery.vue";
-import Funding from "./components/Funding.vue";
-import Celebrate from "./components/Celebrate.vue";
+//import Funding from "./components/Funding.vue";
+//import Celebrate from "./components/Celebrate.vue";
 import FlowerRain from "./components/FlowerRain.vue";
 import MessageBox from "./components/MessageBox.vue";
 import Map from "./components/Map.vue";
+import Bus from "./components/Bus.vue";
 //import Credit from "./components/Credit.vue";
 //import firebase from "firebase/app";
 
@@ -49,11 +52,12 @@ export default {
     IntroMovie,
     Live,
     Gallery,
-    Funding,
+    
     MessageBox,
-    Celebrate,
+    
     FlowerRain,
     Map,
+    Bus,
     MessageButton
 },
 data() {

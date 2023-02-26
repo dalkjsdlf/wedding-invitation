@@ -1,34 +1,44 @@
 <template>
   <div class="live">
+    <!--
     <p class = "desc">
       위 애니메이션은 꼭 소리를 켜고 봐주세요!
     </p>
-    <img src="~@/assets/images/hands.png" class="hands" />
-    <div>
-      <p class = "header">
-        "우리 손 잡을까요?"<br />
+    
+      <img src="~@/assets/images/hands.png" class="hands" />
+    -->
+      <div>
+        <p class = "header">
+          23년 5월 20일 토요일<br />
+        </p>
+        <p class = "header">
+          오후 3시<br />
+        </p>
+        <p class = "header2">
+          롯데월드 전통혼례장<br />
+        </p>
+
+        <br/>
+        
+      <p class = "header2">
+        백년가약<br />
+        백 년을 두고 하는 아름다운 언약
       </p>
+
+      <br/>   
+      <br/>
+      </div>
+      <div>
       <p>
-        각자의 삶을 열심히 살아온 저희가,<br />
-        이제는 손을 잡고 함께 나란히 걸어가려 합니다.<br />
-        사랑한다는 말이 어울리는 사람과 함께<br />
-        오래도록 있는 힘을 다해 행복해지겠습니다.<br />
-        조용하지만 기쁨이 가득한 결혼 소식을<br />
-        이렇게 알려드립니다.
+        곁에 있을 때 가장 나다운 모습이 되게 하는 한 사람<br />
+        꿈을 펼칠 수 있도록 서로에게 날개가 되어줄 한 사람<br />
+        그 사람과 아름다운 삶의 여행을 함께 시작하려 합니다.<br />
+        저희 여행의 출발점에 여러분을 초대하오니<br />
+        오셔서 많이 축복해 주시면 큰 기쁨이겠습니다.
       </p>
+      <br>
       
-      <p class = "header">
-        24년 5월 20일 토요일<br />
-        오전 3시<br />
-      </p>
-      <p>
-        작은 가족식이기에 여러분의 얼굴을 보고 <br />
-        직접 감사와 축하를 나누지는 못하지만,<br />
-        대신 전세계가 참여할 수 있는<br />
-        YouTube Live방송으로 함께 하려고 합니다.<br />
-        여러분이 저희와 함께 있다고 느낄 수 있도록<br />
-        온라인으로 참석해서 채팅으로 축하해주세요.
-      </p>
+   
 
     </div>
     <Button @click="attendance">라이브로 참석하기</Button>
@@ -64,14 +74,27 @@ export default {
     line-height: 24px;
     &.desc {
       color: #295238;
-      
       opacity: 0.6;
       margin-bottom: 36px;
     }
     &.header {
-      font-size: 24px;
-      color: #295238;
+      font-size: 35px;
+      font-weight: bold;
+      color: #000000;
     }
+
+    &.header2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    &.h{
+      font-size: 24px;
+      font-weight: 500;
+      color: #000000;
+    }
+
     &:last-child {
       margin-bottom: 40px;
     }

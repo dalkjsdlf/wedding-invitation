@@ -1,14 +1,14 @@
 <template>
   <div class="map">
     <div>
-      <p class="header">결혼식 장소</p>
+      <p class="header">전세버스 타는 곳</p>
+      <p class="header2">멀리서 오시는 분들을 위해<br/> 전세버스가 준비되어있습니다.</p>
       <p>
-       서울특별시 송파구 올림픽로 240 <br/>
-       롯데월드 민속박물관 전통혼례장(3층)<br/>
-       TEL: 02-411-3703
+       타는 장소: 마산역 아리랑 호텔 앞<br/>
+       출발 시간: 오전 8시<br/>
+       차량 번호: 경남 76바 1266
       </p>
-    
-    
+        
     </div>
 
     <div class="map-container" ref="gal">
@@ -95,7 +95,7 @@ export default {
     },
     makeUrls() {
       // 장소데이터의 이름정보 불러온 뒤
-      const locationName = "롯데월드 전통혼례"
+      const locationName = "마산역"
       this.tmapUrl = "tmap://search?name=" + locationName
       this.kakaoTaxiUrl = "https://t.kakao.com/launch?type=taxi&amp;dest_lat=37.49878007763176&amp;dest_lng=127.03170076652506&amp;ref=localweb"
       this.navermapUrl = "nmap://search?query=" + locationName + "&appname=kimyoon21.github.io/wedding"
