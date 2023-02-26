@@ -68,7 +68,12 @@ export default {
     margin-bottom: 16px;
   }
   p {
-    font-family: 'Gaegu', cursive;
+    font-family: 'WandohopeR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/WandohopeR.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+    /*font-family: 'Gaegu', cursive;*/
     font-size: 20px;
     margin-bottom: 16px;
     line-height: 24px;
