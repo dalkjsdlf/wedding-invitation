@@ -1,21 +1,15 @@
 <template>
   <div id="app">
     <FlowerRain />
-    <IntroMovie />
-    
-    <Live />
+    <Intro />
+    <MainContents/>
     <WdDivider />
     <Gallery />
     <WdDivider />
-    <!-- <Celebrate @click="handleClick" :presents="presents" />
-    <WdDivider />-->
-    <Map />
+    <Location />
     <WdDivider />
-    <Bus/>
-    <!--<Funding />
-    <WdDivider />-->
+    <BusLocation/>
     <div style="display: none">
-     <!-- <Credit /> -->
     </div>
     <MessageButton @click="handleClick"/>
     <MessageBox
@@ -31,33 +25,34 @@
 </template>
 
 <script>
-import IntroMovie from "./components/IntroMovie.vue";
+import FlowerRain from "./components/FlowerRain.vue";
+import Intro from "./components/Intro.vue";
+import MainContents from "./components/MainContents.vue";
 import MessageButton from "./components/MessageButton.vue";
-import Live from "./components/Live.vue";
 import WdDivider from './components/WdDivider.vue';
 import Gallery from "./components/Gallery.vue";
-//import Funding from "./components/Funding.vue";
-//import Celebrate from "./components/Celebrate.vue";
-import FlowerRain from "./components/FlowerRain.vue";
+import Location from "./components/Location.vue";
+
 import MessageBox from "./components/MessageBox.vue";
-import Map from "./components/Map.vue";
-import Bus from "./components/Bus.vue";
+import BusLocation from "./components/BusLocation.vue";
 //import Credit from "./components/Credit.vue";
 //import firebase from "firebase/app";
+//import Funding from "./components/Funding.vue";
+//import Celebrate from "./components/Celebrate.vue";
 
 export default { 
   name: 'App',
   components: {
     WdDivider,
-    IntroMovie,
-    Live,
+    Intro,
+    MainContents,
     Gallery,
     
     MessageBox,
     
     FlowerRain,
-    Map,
-    Bus,
+    Location,
+    BusLocation,
     MessageButton
 },
 data() {
@@ -97,11 +92,16 @@ data() {
 
 <style>
 @font-face {
-  font-family: "Cafe24Oneprettynight";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
+  /*font-family: "Cafe24Oneprettynight";
+ src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff")
+    format("woff");*/
+
+    font-family: 'WandohopeR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/WandohopeR.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+
 }
 html,
 body,

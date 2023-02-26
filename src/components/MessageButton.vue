@@ -21,7 +21,7 @@ export default {
 
 <style lang="scss" scoped>
 .message-box {
-  font-family: 'Gaegu', cursive;
+  font-family: 'WandohopeR';
   
   padding-top: 48px;
   padding-bottom: 72px;
@@ -29,10 +29,10 @@ export default {
   padding-right: $padding-vertical;
   text-align: center;
   .h2 {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: normal;
     margin-bottom: 24px;
-    color: #295138;
+    color: #000000;
   }
 }
 

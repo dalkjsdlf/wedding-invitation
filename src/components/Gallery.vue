@@ -1,13 +1,13 @@
 <template>
   <div class="gallery">
     <img src="~@/assets/images/기러기.png" class="bunny" />
-    <div class="description">
+    <div class="header">
       우리 추억들
     </div>
     <div></div>
     <div class="gallery-container" ref="gal">
       <div class="gallery-inner">
-        <div class="gallery-item" v-for="n in 13" :key="n">
+        <div class="gallery-item" v-for="n in 6" :key="n">
           <div class="image">
             <img
               :src="`/wedding/gallery/${n - 1}.jpg`"
@@ -60,7 +60,7 @@ export default {
   padding-left: $padding-vertical;
   padding-right: $padding-vertical;
   text-align: center;
-  color: #295138;
+  color: #000000;
   overflow: hidden;
   .bunny {
     width: 65px;
@@ -68,6 +68,14 @@ export default {
   }
   .description {
     font-size: 12px;
+    letter-spacing: 6px;
+    margin-bottom: 30px;
+  }
+
+  .header{
+    font-family: "WandohopeR";
+    font-size: 24px;
+    font-weight: bold;
     letter-spacing: 6px;
     margin-bottom: 30px;
   }
@@ -112,11 +120,11 @@ export default {
           position: absolute;
           top: 0;
           left: 0;
-          width: 240px;
+          width: 120px;
           height: 360px;
-          background-image: url("~@/assets/images/arch.png");
+          //background-image: url("~@/assets/images/arch.png");
           background-repeat: no-repeat;
-          background-size: 240px auto;
+          background-size: 120px auto;
           background-position: top left;
           z-index: 10;
         }

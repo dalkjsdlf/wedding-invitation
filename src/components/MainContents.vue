@@ -17,11 +17,14 @@
         <p class = "header2">
           롯데월드 전통혼례장<br />
         </p>
-
+        <br/>
+        <br/>
         <br/>
         
       <p class = "header2">
-        백년가약<br />
+        백년가약(百年佳約)<br />
+      </p>
+      <p class = "header3">
         백 년을 두고 하는 아름다운 언약
       </p>
 
@@ -29,7 +32,7 @@
       <br/>
       </div>
       <div>
-      <p>
+      <p class = "contents">
         곁에 있을 때 가장 나다운 모습이 되게 하는 한 사람<br />
         꿈을 펼칠 수 있도록 서로에게 날개가 되어줄 한 사람<br />
         그 사람과 아름다운 삶의 여행을 함께 시작하려 합니다.<br />
@@ -41,7 +44,7 @@
    
 
     </div>
-    <Button @click="attendance">라이브로 참석하기</Button>
+    <Button class="btn_live" @click="attendance">라이브로 참석하기</Button>
   </div>
 </template>
 
@@ -67,14 +70,19 @@ export default {
     width: 75px;
     margin-bottom: 16px;
   }
+  .btn_live{
+    font-family  : 'WandohopeR';
+    font-size    : 20px;
+    font-weight  : bold;
+  }
+
   p {
     font-family: 'WandohopeR';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/WandohopeR.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
     /*font-family: 'Gaegu', cursive;*/
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: 16px;
     line-height: 24px;
     &.desc {
@@ -91,8 +99,21 @@ export default {
     &.header2 {
       font-size: 24px;
       font-weight: bold;
+      padding-top: 10px;
       color: #000000;
     }
+    &.header3 {
+      font-size: 18px;
+      font-weight: bold;
+      padding-top: px;
+      color: #000000;
+    }
+    &.contents {
+      font-size: 16px;
+      line-height: 1.8em;
+      color: #000000;
+    }
+
 
     &.h{
       font-size: 24px;
