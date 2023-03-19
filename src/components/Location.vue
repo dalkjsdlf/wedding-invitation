@@ -1,14 +1,26 @@
 <template>
   <div class="map">
     <div>
-      <p class="header">결혼식 장소</p>
+      <p class="header">오시는 길</p>
+      <br><br>
       <p class="description">
        서울특별시 송파구 올림픽로 240 <br/>
        롯데월드 민속박물관 전통혼례장(3층)<br/>
        TEL: 02-411-3703
       </p>
-    
-    
+      <!-- <p class="description">
+        지하철
+      </p>
+      <p class="description">
+        버스
+      </p>
+      <p class="description">
+        주차
+      </p>
+      <p>
+
+      </p> -->
+
     </div>
 
     <div class="map-container" ref="gal">
@@ -61,7 +73,8 @@ export default {
     return {
       scrollX: 0,
       width: 320,
-      appKey: '13820f5d51d54f2bfb5203278b7bf8b9', // 테스트용 appkey
+      appKey: '91264db4f7c373850f2fb2a84ca8f496',
+      //appKey: '13820f5d51d54f2bfb5203278b7bf8b9', // 테스트용 appkey
       center: {lat: 37.5112, lng: 127.0980}, // 지도의 중심 좌표
       level: 3, // 지도의 레벨(확대, 축소 정도),
       mapTypeId: VueDaumMap.MapTypeId.NORMAL, // 맵 타입
@@ -107,14 +120,11 @@ export default {
 
 <style lang="scss" scoped>
 
-.map {
-  margin-top: 18px;
-  margin-bottom: 18px;
-}
 
 .navi-apps {
   align-content: center;
   position: relative;
+  font-size: 13px;
 
   .ico_comm img {
     vertical-align: middle;
@@ -142,11 +152,12 @@ export default {
 }
 
 .map {
-  padding-top: 18px;
+  padding-top: 38px;
   padding-bottom: 18px;
   padding-left: $padding-vertical;
   padding-right: $padding-vertical;
   text-align: center;
+  background-color: #F6F6F6;
   .hands {
     width: 75px;
     margin-bottom: 16px;
@@ -154,20 +165,21 @@ export default {
   p {
     font-family: 'WandohopeR';
     font-size: 20px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     line-height: 24px;
     
     &.header {
-      font-size: 35px;
+      font-size: 16px;
       font-weight: bold;
-      color: #000000;
+      color: #295238;
     }
 
     &.description {
-      font-size: 18px;
+      font-size: 14px;
       padding-top: 20px;    
       color: #000000;
       line-height: 1.6em;
+      text-align: left;
     }
 
     &.h{

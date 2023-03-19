@@ -8,21 +8,15 @@
       <img src="~@/assets/images/hands.png" class="hands" />
     -->
       <div>
-        <p class = "header">
-          23년 5월 20일 토요일<br />
-        </p>
-        <p class = "header">
-          오후 3시<br />
-        </p>
-        <p class = "header2">
-          롯데월드 전통혼례장<br />
-        </p>
-        <br/>
-        <br/>
-        <br/>
+      
         
-      <p class = "header2">
+      <!-- <p class = "header2">
         백년가약(百年佳約)<br />
+      </p> -->
+      <p class="header2">
+        百&nbsp; 年&nbsp; 佳&nbsp; 約 <br/>
+        백 | 년 | 가 | 약
+
       </p>
       <p class = "header3">
         백 년을 두고 하는 아름다운 언약
@@ -33,9 +27,9 @@
       </div>
       <div>
       <p class = "contents">
-        곁에 있을 때 가장 나다운 모습이 되게 하는 한 사람<br />
-        꿈을 펼칠 수 있도록 서로에게 날개가 되어줄 한 사람<br />
-        그 사람과 아름다운 삶의 여행을 함께 시작하려 합니다.<br />
+        <!--곁에 있을 때<br />-->가장 나다운 모습이 되게 하는 한 사람<br />
+        <!--꿈을 펼칠 수 있도록 <br />-->서로에게 날개가 되어줄 한 사람<br />
+        그 사람과 아름다운 삶의 여행을<br /> 함께 시작하려 합니다.<br />
         저희 여행의 출발점에 여러분을 초대하오니<br />
         오셔서 많이 축복해 주시면 큰 기쁨이겠습니다.
       </p>
@@ -53,7 +47,7 @@ export default {
   name: "WdLive",
   methods: {
     attendance() {
-      window.open("https://youtu.be/yU9UULnBt0w");
+      window.open("https://youtu.be/iRM888aIHCs");
     },
   },
 };
@@ -61,10 +55,12 @@ export default {
 
 <style lang="scss" scoped>
 .live {
-  padding-top: 4px;
+  padding-top: 20px;
   padding-bottom: 68px;
   padding-left: $padding-vertical;
   padding-right: $padding-vertical;
+  background-color: #FEF7EF;
+  max-height: 680px;
   text-align: center;
   .hands {
     width: 75px;
@@ -72,8 +68,20 @@ export default {
   }
   .btn_live{
     font-family  : 'WandohopeR';
+    margin-top: 50px;
     font-size    : 20px;
-    font-weight  : bold;
+    font-weight: normal;
+    height:50px;
+    width:80%;
+    margin-bottom: 24px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #8e6a54;
+    background-color: #f5e5d6;
+    border-radius: 20px 20px 20px;
+
+
+
   }
 
   p {
@@ -93,25 +101,31 @@ export default {
     &.header {
       font-size: 35px;
       font-weight: bold;
-      color: #000000;
+      padding-top: 20px;
+      line-height: 1.5em;
+      color: #AB8065;
     }
 
     &.header2 {
-      font-size: 24px;
-      font-weight: bold;
-      padding-top: 10px;
-      color: #000000;
-    }
-    &.header3 {
       font-size: 18px;
       font-weight: bold;
+      padding-top: 10px;
+      color: #AB8065;
+    }
+    &.header3 {
+      font-size: 17px;
+      //font-weight: bold;
       padding-top: px;
-      color: #000000;
+      color: #AB8065;
     }
     &.contents {
-      font-size: 16px;
-      line-height: 1.8em;
-      color: #000000;
+      font-size: 14px;
+      //padding-top: 30px;
+      line-height: 2.2em;
+      //display: block;
+      //white-space : nowrap; 
+      //word-break : nowrap;
+      color: #404040;
     }
 
 

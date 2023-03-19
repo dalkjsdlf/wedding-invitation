@@ -2,13 +2,15 @@
   <div class="map">
     <div>
       <p class="header">전세버스 타는 곳</p>
-      <p class="header2">멀리서 오시는 분들을 위해<br/> 전세버스가 준비되어있습니다.</p>
-      <p class="description">
-       타는 장소: 마산역 성산빌딩 앞(구 아리랑호텔)<br/>
+      <p class="header2">멀리서 오시는 분들을 위해<br> 전세버스를 준비했습니다.</p>
+      <!-- <p class="description">
+       타는 장소: 마산역 성산빌딩 앞 <br/>(구 아리랑호텔)<br/>
        출발 시간: 오전 8시<br/>
        차량 번호: 경남 76바 1266
-      </p>
-        
+      </p> -->
+      <br><br>
+      <p class="description"><span style="text-decoration: underline;">마산역</span> 성산빌딩 앞 (구 아리랑호텔) <br><span style="text-decoration: underline;">오전 8시 출발</span><br>경남 76바 1266</p>
+     
     </div>
 
     <div class="map-container" ref="gal">
@@ -61,7 +63,7 @@ export default {
     return {
       scrollX: 0,
       width: 320,
-      appKey: '13820f5d51d54f2bfb5203278b7bf8b9', // 테스트용 appkey
+      appKey: '91264db4f7c373850f2fb2a84ca8f496', // 테스트용 appkey
       center: {lat: 35.234651607715094, lng: 128.57771537571222}, // 지도의 중심 좌표
       level: 3, // 지도의 레벨(확대, 축소 정도),
       mapTypeId: VueDaumMap.MapTypeId.NORMAL, // 맵 타입
@@ -163,27 +165,28 @@ export default {
     }
 
     &.header {
-      font-size: 35px;
+      font-size: 16px;
       font-weight: bold;
-      color: #000000;
+      color: #295238;
     }
 
     &.header2 {
-      font-size: 20px;
-      padding-top: 20px;
-      font-weight: bold;
+      font-size: 14px;
+      padding-top: 5px;
       color: #000000;
+      
     }
 
     &.description {
-      font-size: 18px;
-      padding-top: 20px;    
+      font-size: 14px;
+      padding-top: 10px;    
       color: #000000;
       line-height: 1.6em;
+      text-align: left;
     }
 
     &.h{
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 500;
       color: #000000;
     }

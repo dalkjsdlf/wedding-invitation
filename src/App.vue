@@ -4,10 +4,15 @@
     <Intro />
     <MainContents/>
     <WdDivider />
+    <AccountButton @click="openAccountPop"/>
+    <AccountBox
+    :is-open="isAccountOpen"
+    @close="closeAccountPop"
+    v-scroll-lock="isAccountOpen"/>
     <Gallery />
     <WdDivider />
     <Location />
-    <WdDivider />
+    <!-- <WdDivider /> -->
     <BusLocation/>
     <div style="display: none">
     </div>
@@ -16,12 +21,14 @@
     :is-open="isOpen"
     @close="handleClose"
     v-scroll-lock="isOpen"
-  />
-  <audio autoplay controls>
-    <source src="https://youtu.be/Iw1XmAdOxv4" type="audio/mp3"/>
-  </audio>
-
+    />
+    <!-- <div>    
+      <audio autoplay>
+        <source src="./assets/100days_memory.mp3">
+      </audio>
+    </div> -->
   </div>
+  
 </template>
 
 <script>
@@ -31,6 +38,8 @@ import MainContents from "./components/MainContents.vue";
 import MessageButton from "./components/MessageButton.vue";
 import WdDivider from './components/WdDivider.vue';
 import Gallery from "./components/Gallery.vue";
+import AccountButton from "./components/AccountButton.vue";
+import AccountBox from "./components/AccountBox.vue";
 import Location from "./components/Location.vue";
 
 import MessageBox from "./components/MessageBox.vue";
@@ -47,7 +56,8 @@ export default {
     Intro,
     MainContents,
     Gallery,
-    
+    AccountBox,
+    AccountButton,
     MessageBox,
     
     FlowerRain,
@@ -55,9 +65,11 @@ export default {
     BusLocation,
     MessageButton
 },
+
 data() {
     return {
       isOpen: false,
+      isAccountOpen:false,
       presents: [],
       selectedPresent: {},
     };
@@ -78,6 +90,15 @@ data() {
     //     });
     //   });
     // },
+    openAccountPop()
+    {
+      this.isAccountOpen = true;
+    },
+    closeAccountPop()
+    {
+      this.isAccountOpen = false;
+    }
+    ,
     handleClick(present) {
       this.isOpen = true;
       this.selectedPresent = present;
@@ -244,4 +265,6 @@ button {
   color: #202121;
   background-color: #fffdf9;
 }
+
+
 </style>

@@ -1,16 +1,16 @@
 <template>
   <div class="gallery">
-    <img src="~@/assets/images/기러기.png" class="bunny" />
+    <img src="~@/assets/images/wildgoose.png" class="wildgoose" />
     <div class="header">
-      우리 추억들
+      소중한 날의 모든 순간
     </div>
     <div></div>
     <div class="gallery-container" ref="gal">
       <div class="gallery-inner">
-        <div class="gallery-item" v-for="n in 6" :key="n">
+        <div class="gallery-item" v-for="n in 4" :key="n">
           <div class="image">
             <img
-              :src="`/wedding/gallery/${n - 1}.jpg`"
+              :src="`/gallery/${n - 1}.jpg`"
               :style="{
                 transform: `translateX(${(((scrollX - (n - 1) * 250) / 4.8 +
                   50 >
@@ -55,16 +55,16 @@ export default {
 
 <style lang="scss" scoped>
 .gallery {
-  padding-top: 32px;
+  //padding-top: 32px;
   padding-bottom: 50px;
   padding-left: $padding-vertical;
   padding-right: $padding-vertical;
   text-align: center;
   color: #000000;
   overflow: hidden;
-  .bunny {
-    width: 65px;
-    margin-bottom: 20px;
+  .wildgoose {
+    width: 80px;
+    margin-bottom: 5px;
   }
   .description {
     font-size: 12px;
@@ -74,10 +74,11 @@ export default {
 
   .header{
     font-family: "WandohopeR";
-    font-size: 24px;
+    font-size: 16px;
     font-weight: bold;
     letter-spacing: 6px;
     margin-bottom: 30px;
+    color: #295238;
   }
   .gallery-container {
     padding-left: 50%;
@@ -87,7 +88,8 @@ export default {
     overflow-x: auto;
     .gallery-inner {
       display: flex;
-      width: 3370px;
+      //width: 3370px;
+      width: 1000px;
       .gallery-item {
         flex: 0 0 240px;
         position: relative;
