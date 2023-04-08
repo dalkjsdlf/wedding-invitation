@@ -7,9 +7,9 @@
     <div></div>
     <div class="gallery-container" ref="gal">
       <div class="gallery-inner">
-        <div class="gallery-item" v-for="n in 4" :key="n">
+        <div class="gallery-item" v-for="n in 9" :key="n">
           <div class="image">
-            <img
+            <!-- <img 
               :src="`/gallery/${n - 1}.jpg`"
               :style="{
                 transform: `translateX(${(((scrollX - (n - 1) * 250) / 4.8 +
@@ -22,7 +22,21 @@
                   100) *
                   -55}px)`,
               }"
-            />
+            />-->
+            <img
+            :src="`/gallery/${n}.jpg`"
+            :style="{
+              transform: `translateX(${(((scrollX - (n) * 250) / 4.8 +
+                50 >
+              100
+                ? 100
+                : (scrollX - (n) * 250) / 4.8 + 50 < 0
+                ? 0
+                : (scrollX - (n) * 250) / 4.8 + 50) /
+                100) *
+                -55}px)`,
+            }"
+          />
           </div>
           <div class="arch"></div>
         </div>
@@ -137,10 +151,12 @@ export default {
           width: 240px;
           height: 360px;
           overflow: hidden;
+          //object-fit: cover;
           img {
             transition: transform 100ms;
             width: 296px;
             height: 360px;
+            //object-fit: cover;
           }
         }
       }

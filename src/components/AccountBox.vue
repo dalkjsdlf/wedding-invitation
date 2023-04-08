@@ -18,7 +18,7 @@
               </div>
               <div class="button-div">
                 <button class="button-bottom"
-                @click="handleClick"
+                @click="handleClose"
                 >
                 닫기
                 </button>
@@ -155,7 +155,7 @@ export default {
       overflow: hidden;
       flex: 10 1;
       .image {
-        width: 100%;
+        width: 0%;
         object-fit: cover;
         position: absolute;
         top: 50%;
@@ -423,5 +423,14 @@ export default {
 .bank-account{
   width:90%;
   height:400px;
+}
+.message-box {
+  //font-family: "WandohopeR";
+  
+  padding-top: 48px;
+  padding-bottom: 10px;
+  padding-left: $padding-vertical;
+  padding-right: $padding-vertical;
+  text-align: center;
 }
 </style>

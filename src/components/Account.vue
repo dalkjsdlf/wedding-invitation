@@ -2,6 +2,7 @@
   <div class="account">
     
     <button @click="openPopup()">계좌번호</button>
+    
 
     <transition name="fade" appear>
       <div class="overlay" v-show="isPopOpen" @click="closePopup()" />
@@ -131,7 +132,8 @@ export default {
 .bank-popup{
   width:300px;
   height:200px;
-  background: white;
+  //background: #F6F6F6;
+  //background: #FFE1EB;
   border-radius: 5px;
   padding:20px;
   //box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
@@ -153,8 +155,8 @@ export default {
   padding-left: $padding-vertical;
   padding-right: $padding-vertical;
   text-align: center;
-  background-color: #F6F6F6;
-  
+  //background-color: #F6F6F6;
+  background-color: #FFE1EB;
   .hands {
     width: 75px;
     margin-bottom: 16px;

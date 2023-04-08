@@ -3,12 +3,13 @@
     <FlowerRain />
     <Intro />
     <MainContents/>
-    <WdDivider />
     <AccountButton @click="openAccountPop"/>
     <AccountBox
     :is-open="isAccountOpen"
     @close="closeAccountPop"
     v-scroll-lock="isAccountOpen"/>
+    <WdDivider />
+    
     <Gallery />
     <WdDivider />
     <Location />
@@ -122,7 +123,14 @@ data() {
     font-weight: normal;
     font-style: normal;
 
+  
 
+}
+@font-face {
+  font-family: 'SeoulHangangM';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulHangangM.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 html,
 body,
