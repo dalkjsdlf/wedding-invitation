@@ -131,13 +131,17 @@ export default {
         break;
         //신랑아버지
         case 3:
+        acctNo = "1000-23-52-269572";
+        bank   = "농협은행"; 
         break;
         //신랑어머니
         case 4:
+        acctNo = "1000-23-52-269572";
+        bank   = "농협은행"; 
         break;
         //신부어머니
         case 5:
-        acctNo = "1000-23-52-269572";
+        acctNo = "853-02-134453";
         bank   = "농협은행"; 
         break;
         //신랑
