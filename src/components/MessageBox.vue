@@ -1,7 +1,7 @@
 <template>
   <div>
-      <div style="background-color:black"></div>
       <div class="bottom-sheet-container">
+        
         <div class="bottom-sheet">
           <div class="form-container">
             <div class="form-title">
@@ -16,7 +16,7 @@
                 />
                 <input
                 class="input passwd"
-                type="number"
+                type="text"
                 placeholder="비밀번호(숫자 4자리)"
                 maxlength="4"
                 v-model="passwd"
@@ -56,7 +56,8 @@
               <button class="button-append-bottom" @click="readAppend()">더보기</button>
           </div>
           
-          <div class="black-bg" v-if="isModalOpen == true">
+          <div class="dim-layer" v-if="isModalOpen == true">
+            <div class="dimBg"></div>
             <div class="passwd-popup">
               <a href @click.prevent="closePopup()">닫기</a>
               <div class="passwd-div">
@@ -82,6 +83,7 @@
 import {db} from "../firebaseconfig";
 import {addDoc, collection, doc, getDocs,deleteDoc, onSnapshot,query, orderBy, limit, startAfter} from "firebase/firestore";
 import InfiniteLoading from 'vue-infinite-loading';
+//import bcrypt from 'bcrypt'
 
 const commentsCollectionRef = collection(db, "comments");
 
@@ -139,6 +141,14 @@ export default {
       return !!this.name && !!this.message && !!this.passwd;
     },
   },
+  watch:{
+		chkpasswd : function(){
+			return this.chkpasswd = this.chkpasswd.replace(/[^0-9]/g, '');  //정규식 사용
+		},
+    passwd : function(){
+      return this.passwd = this.passwd.replace(/[^0-9]/g, '');  //정규식 사용
+    }
+	},
   mounted() {
     this.readMessage(); 
   },
@@ -253,6 +263,10 @@ export default {
     passwdValidate(){
 
     }
+    // ,
+    // async crypt(plainText){
+    //   return bcrypt.hash(plainText,10);
+    // }
     ,
     async addMessage(comment){
       try {
@@ -701,13 +715,26 @@ export default {
       background-color: #004fa4;
       color: #ffffff;
     }
-    .black-bg{
-      width:100%;
-      height:100%;
-      background: rgba(0, 0, 0, 0.5);
-      position: fixed;
-      padding: 20px;
-    }
+    .dim-layer {
+  position: fixed;
+  _position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.dim-layer .dimBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .5;
+  filter: alpha(opacity=50);
+}
     .passwd-popup{
       width:300px;
       height:200px;

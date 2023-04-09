@@ -95,7 +95,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  max-height: 680px;
+  height: 680px;
   background-color: #ffffff;
   //font-size: 0;
   .image {

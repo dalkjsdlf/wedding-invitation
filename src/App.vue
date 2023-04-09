@@ -3,7 +3,7 @@
     <FlowerRain />
     <Intro />
     <MainContents/>
-    <!-- <AccountButton @click="openAccountPop"/> -->
+    <AccountButton @click="openAccountPop"/>
     <AccountBox
     :is-open="isAccountOpen"
     @close="closeAccountPop"
@@ -24,7 +24,7 @@
     @close="handleClose"
     v-scroll-lock="isOpen"
     /> -->
-
+    
     <MessageBox>
     </MessageBox>
     <!-- <div>    
