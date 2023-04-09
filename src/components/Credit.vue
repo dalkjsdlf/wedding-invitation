@@ -1,65 +1,20 @@
 <template>
   <div class="credit">
     <h3 class="h2">
-      이
-      <a
-        href="https://github.com/kimyoon21/wedding"
-        target="_blank"
-        class="link"
-        >페이지</a
-      >를 만든 사람들
+      만든 사람들
     </h3>
-    <div class="profile-list">
-      <div class="profile">
-        <a target="_blank" href="https://www.instagram.com/eachee_916/">
-          <div class="thumbnail susan"></div>
-          <div class="name">Susan</div>
-          <div class="role">애니메이션</div>
-        </a>
-      </div>
-      <div class="profile">
-        <a target="_blank" href="https://blog.gangnamunni.com/blog/design">
-          <div class="thumbnail anna"></div>
-          <div class="name">Anna</div>
-          <div class="role">브랜딩</div>
-        </a>
-      </div>
-      <div class="profile">
-        <a target="_blank" href="http://brunch.co.kr/@hee072794">
-          <div class="thumbnail wonny"></div>
-          <div class="name">Wonny</div>
+      <div class="profile-list">
+        <div class="profile">
+          <div class="thumbnail ssoo"></div>
+          <div class="name">김유경</div>
+          <div class="role">디자인</div>
+        </div>
+        <div class="profile">
+          <div class="thumbnail dorris"></div>
+          <div class="name">최연호</div>
           <div class="role">개발</div>
-        </a>
+        </div>
       </div>
-      <div class="profile">
-        <a target="_blank" href="https://blog.gangnamunni.com/blog/web">
-          <div class="thumbnail chichi"></div>
-          <div class="name">Chichi</div>
-          <div class="role">개발</div>
-        </a>
-      </div>
-      <div class="profile">
-        <a
-          target="_blank"
-          href="https://blog.gangnamunni.com/post/product-design-and-product-owner"
-        >
-          <div class="thumbnail jane"></div>
-          <div class="name">Jane</div>
-          <div class="role">디자인&아내</div>
-        </a>
-      </div>
-      <div class="profile">
-        <a target="_blank" href="https://brunch.co.kr/@kimyoon21/30">
-          <div class="thumbnail brown"></div>
-          <div class="name">Brown</div>
-          <div class="role">PO&남편</div>
-        </a>
-      </div>
-    </div>
-    <p class="description">하나를 해도 멋지게 하는 이 사람들이 궁금한가요?</p>
-    <a href="https://blog.gangnamunni.com/" target="_blank" class="recruit">
-      힐링페이퍼의 동료가 되기
-    </a>
   </div>
 </template>
 
@@ -71,12 +26,13 @@ export default {
 
 <style lang="scss" scoped>
 .credit {
-  padding-top: 64px;
+  padding-top: 24px;
   padding-bottom: 80px;
   padding-left: $padding-vertical;
   padding-right: $padding-vertical;
   text-align: center;
   color: #202121;
+  background-color: #f0f1f1;
   .h2 {
     font-size: 16px;
     font-weight: normal;
@@ -102,27 +58,29 @@ export default {
         border-radius: 50%;
         background-color: black;
         margin-bottom: 6px;
+        margin-right:1px;
+        margin-left:1px;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        &.susan {
-          background-image: url(/wedding/img/credit/susan.jpg);
-        }
-        &.wonny {
-          background-image: url(/wedding/img/credit/wonny.jpg);
-        }
-        &.jane {
-          background-image: url(/wedding/img/credit/jane.jpg);
-        }
-        &.anna {
-          background-image: url(/wedding/img/credit/anna.jpg);
-        }
-        &.chichi {
-          background-image: url(/wedding/img/credit/chichi.jpg);
-        }
-        &.brown {
-          background-image: url(/wedding/img/credit/brown.jpg);
-        }
+         &.ssoo {
+           background-image: url(/public/img/credit/ssoo.jpg);
+         }
+         &.dorris { 
+           background-image: url(/public/img/credit/dorris.jpg);
+         }
+        // &.jane {
+        //   background-image: url(/wedding/img/credit/jane.jpg);
+        // }
+        // &.anna {
+        //   background-image: url(/wedding/img/credit/anna.jpg);
+        // }
+        // &.chichi {
+        //   background-image: url(/wedding/img/credit/chichi.jpg);
+        // }
+        // &.brown {
+        //   background-image: url(/wedding/img/credit/brown.jpg);
+        // }
       }
       .name {
         font-size: 14px;

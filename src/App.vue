@@ -3,7 +3,7 @@
     <FlowerRain />
     <Intro />
     <MainContents/>
-    <AccountButton @click="openAccountPop"/>
+    <!-- <AccountButton @click="openAccountPop"/> -->
     <AccountBox
     :is-open="isAccountOpen"
     @close="closeAccountPop"
@@ -17,17 +17,22 @@
     <BusLocation/>
     <div style="display: none">
     </div>
-    <MessageButton @click="handleClick"/>
-    <MessageBox
+    
+    <!-- <MessageButton @click="handleClick"/> -->
+    <!-- <MessageBox
     :is-open="isOpen"
     @close="handleClose"
     v-scroll-lock="isOpen"
-    />
+    /> -->
+
+    <MessageBox>
+    </MessageBox>
     <!-- <div>    
       <audio autoplay>
         <source src="./assets/100days_memory.mp3">
       </audio>
     </div> -->
+    <Credit></Credit>
   </div>
   
 </template>
@@ -45,7 +50,7 @@ import Location from "./components/Location.vue";
 
 import MessageBox from "./components/MessageBox.vue";
 import BusLocation from "./components/BusLocation.vue";
-//import Credit from "./components/Credit.vue";
+import Credit from "./components/Credit.vue";
 //import firebase from "firebase/app";
 //import Funding from "./components/Funding.vue";
 //import Celebrate from "./components/Celebrate.vue";
@@ -64,7 +69,8 @@ export default {
     FlowerRain,
     Location,
     BusLocation,
-    MessageButton
+    MessageButton,
+    Credit
 },
 
 data() {
@@ -100,17 +106,16 @@ data() {
       this.isAccountOpen = false;
     }
     ,
-    handleClick(present) {
-      this.isOpen = true;
-      this.selectedPresent = present;
-    },
+    // handleClick(present) {
+    //   this.isOpen = true;
+    //   this.selectedPresent = present;
+    // },
     handleClose() {
       this.isOpen = false;
     },
   },
 }
 </script>
-
 
 <style>
 @font-face {
@@ -123,14 +128,13 @@ data() {
     font-weight: normal;
     font-style: normal;
 
-  
 
 }
 @font-face {
-  font-family: 'SeoulHangangM';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulHangangM.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'SeoulHangangM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulHangangM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 html,
 body,

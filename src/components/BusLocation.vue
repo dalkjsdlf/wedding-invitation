@@ -154,7 +154,7 @@ export default {
     margin-bottom: 16px;
   }
   p {
-    font-family: 'WandohopeR';
+    font-family: 'SeoulHangangM';
     font-size: 20px;
     margin-bottom: 16px;
     line-height: 24px;

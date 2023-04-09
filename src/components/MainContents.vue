@@ -1,18 +1,6 @@
 <template>
   <div class="live">
-    <!--
-    <p class = "desc">
-      위 애니메이션은 꼭 소리를 켜고 봐주세요!
-    </p>
-    
-      <img src="~@/assets/images/hands.png" class="hands" />
-    -->
       <div>
-      
-        
-      <!-- <p class = "header2">
-        백년가약(百年佳約)<br />
-      </p> -->
       <p class="header2">
         百&nbsp; 年&nbsp; 佳&nbsp; 約 <br/>
         백 | 년 | 가 | 약
@@ -34,9 +22,6 @@
         오셔서 많이 축복해 주시면 큰 기쁨이겠습니다.
       </p>
       <br>
-      
-   
-
     </div>
     <Button class="btn_live" @click="attendance">라이브로 참석하기</Button>
   </div>
@@ -47,7 +32,21 @@ export default {
   name: "WdLive",
   methods: {
     attendance() {
+    const today = new Date();
+    let year = today.getFullYear(); // 년도
+    let month = today.getMonth() + 1;  // 월
+    let date = today.getDate();  // 날짜
+    let hour = today.getHours(); // 시간
+    if(year == "2023" 
+    && month == "5" 
+    && date  == "20"
+    && hour == "3"){
+
       window.open("https://youtu.be/iRM888aIHCs");
+    }
+    else{
+      alert("5월 20일 혼례식 당일 접속 가능합니다.");
+    }
     },
   },
 };
@@ -79,9 +78,6 @@ export default {
     color: #8e6a54;
     background-color: #f5e5d6;
     border-radius: 20px 20px 20px;
-
-
-
   }
 
   p {

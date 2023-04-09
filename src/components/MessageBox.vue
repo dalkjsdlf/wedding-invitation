@@ -1,11 +1,7 @@
 <template>
   <div>
-    <transition name="fade" appear>
-      <div class="overlay" v-show="isOpen" @click="handleClose" />
-    </transition>
-
-    <transition name="slide" appear>
-      <div class="bottom-sheet-container" v-show="isOpen">
+      <div style="background-color:black"></div>
+      <div class="bottom-sheet-container">
         <div class="bottom-sheet">
           <div class="form-container">
             <div class="form-title">
@@ -45,7 +41,7 @@
                 <li v-for="(item,index) in comments" :key="index">
                   <div class="list-card">
                     <div class="user-header">
-                      <div class="user-id">{{item.name}} &nbsp;</div>
+                      <div class="user-id">{{item.name}}</div>
                       <a href class="coment-delete" @click.prevent="openPopup(item)">&times;</a>
                       <div class="write-date">{{item.date}}</div>
                     </div>
@@ -56,6 +52,10 @@
               </ul>
             </div>            
           </div>
+          <div class="button-append-div">
+              <button class="button-append-bottom" @click="readAppend()">더보기</button>
+          </div>
+          
           <div class="black-bg" v-if="isModalOpen == true">
             <div class="passwd-popup">
               <a href @click.prevent="closePopup()">닫기</a>
@@ -74,16 +74,13 @@
             </div>
           </div>
         </div>
-        
       </div>
-
-    </transition>
   </div>
 </template>
 
 <script>
 import {db} from "../firebaseconfig";
-import {addDoc, collection, doc, deleteDoc, onSnapshot,query, orderBy} from "firebase/firestore";
+import {addDoc, collection, doc, getDocs,deleteDoc, onSnapshot,query, orderBy, limit, startAfter} from "firebase/firestore";
 import InfiniteLoading from 'vue-infinite-loading';
 
 const commentsCollectionRef = collection(db, "comments");
@@ -123,7 +120,8 @@ export default {
       comments:[],
       cur_comment:{},
       chkpasswd:"",
-      isModalOpen:false
+      isModalOpen:false,
+      lastVisible:0
     };
   },
   props: {
@@ -167,6 +165,7 @@ export default {
   },
 
   methods: {
+    
     passwdchk(event){
       const val = event.target.value;
       console.log(val);
@@ -187,11 +186,48 @@ export default {
 
     }
     ,
+    async readAppend(){
+      // Get the last visible document
+
+      const q = query(commentsCollectionRef,
+        orderBy("date","desc"),
+        startAfter(this.lastVisible),
+        limit(5)
+        );
+
+      const documentSnapshots = await getDocs(q);
+
+      const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
+      console.log("last", lastVisible);
+      this.lastVisible = lastVisible;
+      
+      documentSnapshots.forEach((doc) => {
+      let dateObj = doc.data().date.toDate()
+      let newComment = {
+        id:"",
+        name:"",
+        message:"",
+        date:""
+      }
+      console.log("cur comment >> " + this.comments.length);
+      newComment.id       = doc.id;
+      newComment.name     = doc.data().name;
+      newComment.message  = doc.data().message;
+      newComment.date     = this.getWriteDate(dateObj);
+      newComment.passwd     = doc.data().passwd;
+      //console.log(`ID : ${newComment.id} 이름 : ${newComment.name}  메시지 : ${newComment.message} 날짜 : ${newComment.date} 비밀번호 : ${newComment.passwd}`);
+      this.comments.push(newComment);
+      });
+    },
+
     readMessage(){
-      const q = query(commentsCollectionRef,orderBy("date","desc"));
+      const q = query(commentsCollectionRef,orderBy("date","desc"),limit(5));
       
       onSnapshot(q, (querySnapshot) => {
         this.comments = [];  
+        
+        this.lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
+        console.log("lastVisible >>> " + this.lastVisible);
         querySnapshot.forEach((doc) => {
         
         let dateObj = doc.data().date.toDate();
@@ -208,7 +244,7 @@ export default {
         newComment.message  = doc.data().message;
         newComment.date     = this.getWriteDate(dateObj);
         newComment.passwd     = doc.data().passwd;
-        //console.log(`ID : ${newComment.id} 이름 : ${newComment.name}  메시지 : ${newComment.message} 날짜 : ${newComment.date} 비밀번호 : ${newComment.passwd}`);
+        console.log(`ID : ${newComment.id} 이름 : ${newComment.name}  메시지 : ${newComment.message} 날짜 : ${newComment.date} 비밀번호 : ${newComment.passwd}`);
         this.comments.push(newComment);
         });
       });
@@ -220,15 +256,16 @@ export default {
     ,
     async addMessage(comment){
       try {
-        
-        const ref = await addDoc(commentsCollectionRef,comment);
-        
-        console.log(ref);
-        
+        alert("축하해 주셔서 감사합니다!");
+
         this.name = "";
         this.message = "";
         this.date = "";
         this.passwd = "";
+
+        const ref = await addDoc(commentsCollectionRef,comment);
+        console.log(ref);
+        
         
         this.readMessage();
       } catch (e) {
@@ -266,6 +303,7 @@ export default {
     },
     openPopup(item){
       this.isModalOpen = true;
+      console.log("this.isModalOpen >>> " + this.isModalOpen)
       this.cur_comment = {
         id:item.id,
         name:item.name,
@@ -278,6 +316,7 @@ export default {
     closePopup(){
       this.isModalOpen = false;
       this.cur_comment = {};
+      this.chkpasswd = "";
     }
     ,
     writeMessage(comment) {
@@ -342,6 +381,11 @@ export default {
         return false;
       }
 
+      if(this.message.length >= 40){
+        alert("메시지는 40자리 까지만 가능합니다.");
+        return false;
+      }
+
       if (this.isNull(this.passwd)){
         alert("비밀번호를 입력해주세요.");
         return false;
@@ -369,61 +413,13 @@ export default {
       // console.log("comment date    >>>> " + comment.date   );
 
       this.addMessage(comment);
-      //this.writeComent(comment);
-      // const isConfirmed = confirm(
-      //   `정말 ${this.present.name} 선물을 하시겠어요? 확인해주시면 선물 완료로 표시됩니다.`
-      // );
-
-      // if (!isConfirmed) {
-      //   return;
-      // }
-      
-      
-      // firebase.database()
-      // .ref(this.name)
-      // .set(
-      //     {
-      //       ...this.user,
-      //       name: this.name,
-      //       message: this.message,
-      //       date: this.date,
-      //     },
-      //     (error) => { 
-      //       if (error) {
-      //         console.error(error.message);
-      //         return;
-      //       }
-
-      //       this.handleClose();
-      //       this.name = null;
-      //       this.message = null;
-      //     }
-      //   );
+     
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.slide-enter-active {
-  transition: all 0.28s ease-in-out;
-}
-.slide-leave-active {
-  transition: all 0.28s ease-in-out;
-}
-.slide-enter,
-.slide-leave-to {
-  transform: translateY(100%);
-}
 
 .overlay {
   right: 0;
@@ -440,8 +436,8 @@ export default {
   left: 0;
   bottom: 0;
   top: 0;
-  position: fixed;
-  z-index: 999;
+  //position: fixed;
+  //z-index: 999;
   margin-top: 50px;
   background-color: #F6F6F6;
 
@@ -481,7 +477,7 @@ export default {
     }
 
     .form-title{
-        font-family  : 'WandohopeR';  
+        font-family  : 'SeoulHangangM';  
         font-size: 14px;
         font-weight: bold;
         padding-top: 10px;
@@ -529,12 +525,12 @@ export default {
           align-items: center;
           padding-left: 0px;
           padding-right: 0px;
-          font-family  : 'WandohopeR';
+          font-family  : 'SeoulHangangM';
           font-size    : 14px;
           
           .user-id {
             display: inline-block;
-            font-size: 16px;
+            font-size: 14px;
             margin: 10px 10px 10px 10px;
             width: 200px;
             color:#4a3737
@@ -558,7 +554,7 @@ export default {
           }
         }
         .list-card{
-          background-color: rgb(240, 240, 240);
+          background-color: #faf2f2;
           margin-top : 10px;
           margin-bottom : 10px;
           padding-top:10px;
@@ -574,7 +570,7 @@ export default {
           //font-weight: 700;
           box-sizing: border-box;
           font-family  : 'WandohopeR';
-          font-size    : 18px;
+          font-size    : 12px;
         }
 
       }
@@ -636,19 +632,39 @@ export default {
       .button-bottom {
         flex: 0 0 54px;
         cursor: default;
-        font-family  : 'WandohopeR';
-        font-size    : 24px;
+        font-family  : 'SeoulHangangM';
+        font-size    : 18px;
         width: 100%;
         height:45px;
         margin-bottom: constant(safe-area-inset-bottom);
         margin-bottom: env(safe-area-inset-bottom);
-        background-color: #eaeaea;
-        color: #999999;
+        
+        background-color: #8f8f8f;
+          color: #ffffff;
         &.active {
           cursor: pointer;
-          background-color: #8f8f8f;
-          color: #ffffff;
+          background-color: #013257;
+        color: #e9e8e8;
         }
+      }
+    }
+
+    .button-append-div{
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-bottom: 20px;
+      .button-append-bottom {
+        flex: 0 0 54px;
+        cursor: default;
+        font-family  : 'SeoulHangangM';
+        font-size    : 18px;
+        width: 100%;
+        height:45px;
+        margin-bottom: constant(safe-area-inset-bottom);
+        margin-bottom: env(safe-area-inset-bottom);
+        
+        background-color: #fbe7e7;
+          color: #4a3737;
       }
     }
     .passwd-div{
@@ -676,7 +692,7 @@ export default {
       
       flex: 0 0 54px;
       cursor: default;
-      font-family  : 'WandohopeR';
+      font-family  : 'SeoulHangangM';
       font-size    : 24px;
       width: 100%;
       height:45px;
