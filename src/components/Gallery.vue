@@ -4,41 +4,21 @@
     <div class="header">
       소중한 날의 모든 순간
     </div>
-    <div></div>
+
     <div class="gallery-container" ref="gal">
       <div class="gallery-inner">
         <div class="gallery-item" v-for="n in 9" :key="n">
           <div class="image">
-            <!-- <img 
-              :src="`/gallery/${n - 1}.jpg`"
-              :style="{
-                transform: `translateX(${(((scrollX - (n - 1) * 250) / 4.8 +
-                  50 >
-                100
-                  ? 100
-                  : (scrollX - (n - 1) * 250) / 4.8 + 50 < 0
-                  ? 0
-                  : (scrollX - (n - 1) * 250) / 4.8 + 50) /
-                  100) *
-                  -55}px)`,
-              }"
-            />-->
+           
             <img
             :src="`/gallery/${n}.jpg`"
             :style="{
-              transform: `translateX(${(((scrollX - (n) * 250) / 4.8 +
-                50 >
-              100
-                ? 100
-                : (scrollX - (n) * 250) / 4.8 + 50 < 0
-                ? 0
-                : (scrollX - (n) * 250) / 4.8 + 50) /
-                100) *
-                -55}px)`,
+              //transform: `translateX(${(scrollX - width * 2500)}px)`,
+              transform: `translateX(0px)`
             }"
           />
           </div>
-          <div class="arch"></div>
+
         </div>
       </div>
     </div>
@@ -51,7 +31,7 @@ export default {
   data() {
     return {
       scrollX: 0,
-      width: 320,
+      width: this.width,
     };
   },
   mounted() {
@@ -62,7 +42,7 @@ export default {
       document.documentElement.clientWidth || 0,
       window.innerWidth || 0
     );
-    this.$refs.gal.scrollLeft = 850;
+    //this.$refs.gal.scrollLeft = 3500;
   },
 };
 </script>
@@ -95,8 +75,8 @@ export default {
     color: #295238;
   }
   .gallery-container {
-    padding-left: 50%;
-    padding-right: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-left: -22px;
     margin-right: -22px;
     overflow-x: auto;
@@ -105,21 +85,23 @@ export default {
       //width: 3370px;
       width: 1000px;
       .gallery-item {
-        flex: 0 0 240px;
+        flex-flow: row wrap;
+        //flex: 0 0 content;
+        //justify-content: space-around;
         position: relative;
-        width: 240px;
+        width: auto;
         height: 360px;
-        margin-right: 10px;
+        display: block;
+        margin-right: 260px;
         &:before {
           position: absolute;
           top: 0;
           left: -1px;
           display: block;
           content: "";
-          width: 2px;
-          height: 360px;
+          
           background-color: #fffdf9;
-          z-index: 11;
+          z-index: auto;
         }
         &:after {
           position: absolute;
@@ -127,10 +109,9 @@ export default {
           right: -1px;
           display: block;
           content: "";
-          width: 2px;
-          height: 360px;
+         
           background-color: #fffdf9;
-          z-index: 11;
+          z-index:auto;
         }
         .arch {
           position: absolute;
@@ -146,15 +127,17 @@ export default {
         }
         .image {
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 240px;
-          height: 360px;
+         
           overflow: hidden;
+          max-height: initial;
+          margin-top: -5%;
+          margin: auto;
           //object-fit: cover;
           img {
-            transition: transform 100ms;
-            width: 296px;
+            border: 5px solid #ffffff;
+            transition:  3.6s;
+            //width: 296px;
+            //width: 100%;
             height: 360px;
             //object-fit: cover;
           }
