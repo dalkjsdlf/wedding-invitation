@@ -3,15 +3,18 @@
     <FlowerRain />
     <Intro />
     <MainContents/>
+
+    <WdDivider />
+    
+    <Gallery />
+    <WdDivider />
+
     <AccountButton @click="openAccountPop"/>
     <AccountBox
     :is-open="isAccountOpen"
     @close="closeAccountPop"
     v-scroll-lock="isAccountOpen"/>
-    <WdDivider />
-    
-    <Gallery />
-    <WdDivider />
+   
     <Location />
     <!-- <WdDivider /> -->
     <BusLocation/>
@@ -27,11 +30,11 @@
     
     <MessageBox>
     </MessageBox>
-    <!-- <div>    
+    <div>    
       <audio autoplay>
         <source src="./assets/100days_memory.mp3">
       </audio>
-    </div> -->
+    </div>
     <Credit></Credit>
   </div>
   
@@ -41,7 +44,7 @@
 import FlowerRain from "./components/FlowerRain.vue";
 import Intro from "./components/Intro.vue";
 import MainContents from "./components/MainContents.vue";
-import MessageButton from "./components/MessageButton.vue";
+//import MessageButton from "./components/MessageButton.vue";
 import WdDivider from './components/WdDivider.vue';
 import Gallery from "./components/Gallery.vue";
 import AccountButton from "./components/AccountButton.vue";
@@ -69,7 +72,7 @@ export default {
     FlowerRain,
     Location,
     BusLocation,
-    MessageButton,
+    //MessageButton,
     Credit
 },
 

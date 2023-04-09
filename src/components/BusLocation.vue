@@ -111,7 +111,8 @@ export default {
 
 .map {
   margin-top: 18px;
-  margin-bottom: 18px;
+  //margin-bottom: 18px;
+  background-color: #F6F6F6;
 }
 
 .navi-apps {

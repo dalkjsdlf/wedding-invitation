@@ -157,7 +157,7 @@ export default {
   padding-left: $padding-vertical;
   padding-right: $padding-vertical;
   text-align: center;
-  background-color: #F6F6F6;
+  //background-color: #F6F6F6;
   .hands {
     width: 75px;
     margin-bottom: 16px;

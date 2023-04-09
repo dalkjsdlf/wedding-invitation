@@ -50,11 +50,12 @@
                 </li>
                 <!--<infinite-loading v-if="hasMore" :identifier="infiniteId" @infinite="onScroll"></infinite-loading>-->
               </ul>
-            </div>            
+            </div>      
+            <div v-if="comments.length>0" class="button-append-div">
+              <button class="button-append-bottom"  @click="readAppend()">더보기</button>
+            </div>      
           </div>
-          <div class="button-append-div">
-              <button class="button-append-bottom" @click="readAppend()">더보기</button>
-          </div>
+          
           
           <div class="dim-layer" v-if="isModalOpen == true">
             <div class="dimBg"></div>
@@ -82,7 +83,7 @@
 <script>
 import {db} from "../firebaseconfig";
 import {addDoc, collection, doc, getDocs,deleteDoc, onSnapshot,query, orderBy, limit, startAfter} from "firebase/firestore";
-import InfiniteLoading from 'vue-infinite-loading';
+//import InfiniteLoading from 'vue-infinite-loading';
 //import bcrypt from 'bcrypt'
 
 const commentsCollectionRef = collection(db, "comments");
@@ -102,7 +103,7 @@ const commentsCollectionRef = collection(db, "comments");
 export default {
   name: "MessageBox",
   components:{
-    InfiniteLoading,
+    
   },
   data() {
     return {
@@ -178,7 +179,7 @@ export default {
     
     passwdchk(event){
       const val = event.target.value;
-      console.log(val);
+   
       if(val.length > 4){
         alert("비밀번호는 4자리만 허용합니다.");
         return false;
@@ -198,7 +199,7 @@ export default {
     ,
     async readAppend(){
       // Get the last visible document
-
+      
       const q = query(commentsCollectionRef,
         orderBy("date","desc"),
         startAfter(this.lastVisible),
@@ -206,10 +207,6 @@ export default {
         );
 
       const documentSnapshots = await getDocs(q);
-
-      const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
-      console.log("last", lastVisible);
-      this.lastVisible = lastVisible;
       
       documentSnapshots.forEach((doc) => {
       let dateObj = doc.data().date.toDate()
@@ -219,7 +216,7 @@ export default {
         message:"",
         date:""
       }
-      console.log("cur comment >> " + this.comments.length);
+      //console.log("cur comment >> " + this.comments.length);
       newComment.id       = doc.id;
       newComment.name     = doc.data().name;
       newComment.message  = doc.data().message;
@@ -235,9 +232,8 @@ export default {
       
       onSnapshot(q, (querySnapshot) => {
         this.comments = [];  
-        
         this.lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
-        console.log("lastVisible >>> " + this.lastVisible);
+
         querySnapshot.forEach((doc) => {
         
         let dateObj = doc.data().date.toDate();
@@ -254,7 +250,7 @@ export default {
         newComment.message  = doc.data().message;
         newComment.date     = this.getWriteDate(dateObj);
         newComment.passwd     = doc.data().passwd;
-        console.log(`ID : ${newComment.id} 이름 : ${newComment.name}  메시지 : ${newComment.message} 날짜 : ${newComment.date} 비밀번호 : ${newComment.passwd}`);
+        //console.log(`ID : ${newComment.id} 이름 : ${newComment.name}  메시지 : ${newComment.message} 날짜 : ${newComment.date} 비밀번호 : ${newComment.passwd}`);
         this.comments.push(newComment);
         });
       });
@@ -277,8 +273,8 @@ export default {
         this.date = "";
         this.passwd = "";
 
-        const ref = await addDoc(commentsCollectionRef,comment);
-        console.log(ref);
+        await addDoc(commentsCollectionRef,comment);
+        //console.log(ref);
         
         
         this.readMessage();
@@ -317,7 +313,7 @@ export default {
     },
     openPopup(item){
       this.isModalOpen = true;
-      console.log("this.isModalOpen >>> " + this.isModalOpen)
+      //console.log("this.isModalOpen >>> " + this.isModalOpen)
       this.cur_comment = {
         id:item.id,
         name:item.name,
@@ -355,7 +351,7 @@ export default {
       }else{
         date = psDate;
       }
-      console.log(date)
+    
       const year = date.getFullYear();
       const month =
         date.getMonth() + 1 > 10
@@ -452,7 +448,7 @@ export default {
   top: 0;
   //position: fixed;
   //z-index: 999;
-  margin-top: 50px;
+  //margin-top: 50px;
   background-color: #F6F6F6;
 
   .bottom-sheet {
