@@ -407,6 +407,7 @@ export default {
         return false;
       }
 
+      
       if(this.message.length >= 100){
         alert("메시지는 100자리 까지만 가능합니다.");
         return false;
