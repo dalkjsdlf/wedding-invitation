@@ -13,7 +13,7 @@
 
 <script>
 import musicPath from "../assets/100days_memory.mp3";
-export default {   
+export default {    
   name: "MisicButton",
   data(){
     return{
