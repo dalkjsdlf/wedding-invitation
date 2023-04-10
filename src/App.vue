@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <div>
+      <button @click="audio.play();">v</button>
+      <audio autoplay>
+        <source src="./assets/100days_memory.mp3">
+      </audio>
+    </div>
     <FlowerRain />
     <Intro />
     <MainContents/>
@@ -30,11 +36,7 @@
     
     <MessageBox>
     </MessageBox>
-    <div>    
-      <audio autoplay>
-        <source src="./assets/100days_memory.mp3">
-      </audio>
-    </div>
+    
     <Credit></Credit>
   </div>
   
