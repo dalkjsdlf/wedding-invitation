@@ -5,7 +5,7 @@
         <div class="bottom-sheet">
           <div class="form-container">
             <div class="form-title">
-              축하 인사 전하기
+              축하 인사 전하기 :)
             </div>
             <div class="form-body">
               <input
@@ -41,26 +41,32 @@
                 <li v-for="(item,index) in comments" :key="index">
                   <div class="list-card">
                     <div class="user-header">
-                      <div class="user-id">{{item.name}}</div>
-                      <a href class="coment-delete" @click.prevent="openPopup(item)">&times;</a>
+                      <div class="user-top">
+                        <div class="user-id">{{item.name}}</div>
+                        <a href class="coment-delete" @click.prevent="openPopup(item)">&times;</a>
+                      </div>
+
                       <div class="write-date">{{item.date}}</div>
                     </div>
-                    <span class="user-comment">{{item.message}}</span>
+                    <span class="user-comment">
+                      <img style="width:15px;" src="/img/floral-leaf/floral-leaf-3.png"/> 
+                      <span> {{item.message}}</span>
+                      
+                    </span>
                   </div> 
                 </li>
                 <!--<infinite-loading v-if="hasMore" :identifier="infiniteId" @infinite="onScroll"></infinite-loading>-->
               </ul>
-            </div>      
-            <div v-if="comments.length>0" class="button-append-div">
-              <button class="button-append-bottom"  @click="readAppend()">더보기</button>
-            </div>      
+            </div>            
           </div>
-          
+          <div class="button-append-div">
+              <button class="button-append-bottom" @click="readAppend()">더보기</button>
+          </div>
           
           <div class="dim-layer" v-if="isModalOpen == true">
             <div class="dimBg"></div>
             <div class="passwd-popup">
-              <a href @click.prevent="closePopup()">닫기</a>
+              <a href style="font-family: SeoulHangangM;" @click.prevent="closePopup()">닫기</a>
               <div class="passwd-div">
                 <div>
                   <input
@@ -83,7 +89,7 @@
 <script>
 import {db} from "../firebaseconfig";
 import {addDoc, collection, doc, getDocs,deleteDoc, onSnapshot,query, orderBy, limit, startAfter} from "firebase/firestore";
-//import InfiniteLoading from 'vue-infinite-loading';
+
 //import bcrypt from 'bcrypt'
 
 const commentsCollectionRef = collection(db, "comments");
@@ -179,7 +185,7 @@ export default {
     
     passwdchk(event){
       const val = event.target.value;
-   
+      //console.log(val);
       if(val.length > 4){
         alert("비밀번호는 4자리만 허용합니다.");
         return false;
@@ -199,7 +205,12 @@ export default {
     ,
     async readAppend(){
       // Get the last visible document
-      
+
+      if(this.lastVisible == undefined || this.lastVisible == null)
+      {
+        return;  
+      }
+
       const q = query(commentsCollectionRef,
         orderBy("date","desc"),
         startAfter(this.lastVisible),
@@ -207,6 +218,10 @@ export default {
         );
 
       const documentSnapshots = await getDocs(q);
+
+      const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
+      
+      this.lastVisible = lastVisible;
       
       documentSnapshots.forEach((doc) => {
       let dateObj = doc.data().date.toDate()
@@ -216,7 +231,7 @@ export default {
         message:"",
         date:""
       }
-      //console.log("cur comment >> " + this.comments.length);
+      console.log("cur comment >> " + this.comments.length);
       newComment.id       = doc.id;
       newComment.name     = doc.data().name;
       newComment.message  = doc.data().message;
@@ -232,8 +247,9 @@ export default {
       
       onSnapshot(q, (querySnapshot) => {
         this.comments = [];  
+        
         this.lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
-
+        console.log("lastVisible >>> " + this.lastVisible);
         querySnapshot.forEach((doc) => {
         
         let dateObj = doc.data().date.toDate();
@@ -250,7 +266,7 @@ export default {
         newComment.message  = doc.data().message;
         newComment.date     = this.getWriteDate(dateObj);
         newComment.passwd     = doc.data().passwd;
-        //console.log(`ID : ${newComment.id} 이름 : ${newComment.name}  메시지 : ${newComment.message} 날짜 : ${newComment.date} 비밀번호 : ${newComment.passwd}`);
+        console.log(`ID : ${newComment.id} 이름 : ${newComment.name}  메시지 : ${newComment.message} 날짜 : ${newComment.date} 비밀번호 : ${newComment.passwd}`);
         this.comments.push(newComment);
         });
       });
@@ -266,15 +282,15 @@ export default {
     ,
     async addMessage(comment){
       try {
-        alert("축하해 주셔서 감사합니다!");
+        alert("축하해 주셔서 감사합니다 ^^");
 
         this.name = "";
         this.message = "";
         this.date = "";
         this.passwd = "";
 
-        await addDoc(commentsCollectionRef,comment);
-        //console.log(ref);
+        const ref = await addDoc(commentsCollectionRef,comment);
+        console.log(ref);
         
         
         this.readMessage();
@@ -313,7 +329,7 @@ export default {
     },
     openPopup(item){
       this.isModalOpen = true;
-      //console.log("this.isModalOpen >>> " + this.isModalOpen)
+      console.log("this.isModalOpen >>> " + this.isModalOpen)
       this.cur_comment = {
         id:item.id,
         name:item.name,
@@ -351,13 +367,13 @@ export default {
       }else{
         date = psDate;
       }
-    
+      console.log(date)
       const year = date.getFullYear();
       const month =
         date.getMonth() + 1 > 10
           ? date.getMonth() + 1
           : `0${date.getMonth() + 1}`;
-      const day = date.getDate() > 10 ? date.getDate() : `0${date.getDate()}`;
+      const day = date.getDate() >= 10 ? date.getDate() : `0${date.getDate()}`;
       return `${year}-${month}-${day}`;
     },
 
@@ -391,8 +407,9 @@ export default {
         return false;
       }
 
-      if(this.message.length >= 40){
-        alert("메시지는 40자리 까지만 가능합니다.");
+      
+      if(this.message.length >= 100){
+        alert("메시지는 100자리 까지만 가능합니다.");
         return false;
       }
 
@@ -423,7 +440,6 @@ export default {
       // console.log("comment date    >>>> " + comment.date   );
 
       this.addMessage(comment);
-     
     },
   },
 };
@@ -448,7 +464,7 @@ export default {
   top: 0;
   //position: fixed;
   //z-index: 999;
-  //margin-top: 50px;
+  margin-top: 50px;
   background-color: #F6F6F6;
 
   .bottom-sheet {
@@ -530,19 +546,22 @@ export default {
         padding-left: 20px;
         padding-right: 20px;
       
+        
         .user-header{  
-          
           align-items: center;
           padding-left: 0px;
           padding-right: 0px;
           font-family  : 'SeoulHangangM';
           font-size    : 14px;
           
+          .user-top{
+            display:flex;
+          }
           .user-id {
             display: inline-block;
             font-size: 14px;
-            margin: 10px 10px 10px 10px;
-            width: 200px;
+            margin: 10px 10px 5px 10px;
+            width: 85%;
             color:#4a3737
           }
 
@@ -553,13 +572,15 @@ export default {
           }
 
           .coment-delete {
-            position: absolute;
+            display: inline-block;
+            //flex: 0 0 54px;
+            //position: absolute;
             right:20px;
-            margin-right: 30px;
             margin-top: 5px;
             font-size: 24px;
             text-decoration: none;
             color: #333;
+            
             //transform: translate(-20%, -60%);
           }
         }
@@ -567,10 +588,10 @@ export default {
           background-color: #faf2f2;
           margin-top : 10px;
           margin-bottom : 10px;
-          padding-top:10px;
+          padding-top:5px;
           padding-left:10px;
           padding-right:10px;
-          height:100px;
+          min-height:80px;
         }
         .user-comment {
           display: block;
@@ -581,6 +602,7 @@ export default {
           box-sizing: border-box;
           font-family  : 'WandohopeR';
           font-size    : 12px;
+          line-height: 150%;
         }
 
       }
@@ -653,7 +675,7 @@ export default {
           color: #ffffff;
         &.active {
           cursor: pointer;
-          background-color: #013257;
+          background-color: #4a3737;
         color: #e9e8e8;
         }
       }
@@ -681,6 +703,7 @@ export default {
       
       padding-top: 20px;
       
+      
       .input {
         padding-left: 20px;
         padding-right: 20px;
@@ -700,15 +723,16 @@ export default {
       padding-left: 20px;
       padding-right: 20px;
       
+      border-radius: 5px;
       flex: 0 0 54px;
       cursor: default;
       font-family  : 'SeoulHangangM';
-      font-size    : 24px;
+      font-size    : 20px;
       width: 100%;
-      height:45px;
+      height:40px;
       margin-bottom: constant(safe-area-inset-bottom);
       margin-bottom: env(safe-area-inset-bottom);
-      background-color: #004fa4;
+      background-color: #4a3737;
       color: #ffffff;
     }
     .dim-layer {
@@ -733,7 +757,7 @@ export default {
 }
     .passwd-popup{
       width:300px;
-      height:200px;
+      height:180px;
       background: white;
       border-radius: 5px;
       padding:20px;
