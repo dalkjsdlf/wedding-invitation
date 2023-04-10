@@ -73,7 +73,9 @@
     <div class="dim-layer" v-if="isModalOpen == true">
         <div class="dimBg"></div>
         <div class="account-popup">
-          <a href @click.prevent="closePopup()">닫기</a>
+          <div class="account-header">
+            <span class="account-name">예금주 : {{ accountInfo.name }}</span><a href @click.prevent="closePopup()">닫기</a>
+          </div> 
           <div class="account-div"> 
             <table>
               <tr>
@@ -99,6 +101,7 @@ export default {
     return{
       isModalOpen:false,
       accountInfo:{
+        name:"",
         no:"",
         bank:""
       }
@@ -116,31 +119,37 @@ export default {
       this.isModalOpen = true;
       let acctNo="";
       let bank="";
-      console.log("percontype >>> " + personType);
+      let name="";
+      //console.log("percontype >>> " + personType);
       switch(personType)
       {
         //신랑
         case 1:
+        name   = "최연호";
         acctNo = "9002-1418-6658-1";
         bank   = "새마을 금고"; 
         break;
         //신부
         case 2:
+        name   = "김유경";
         acctNo = "110-292-268670";
         bank   = "신한은행"; 
         break;
         //신랑아버지
         case 3:
+        name   = "우경심";
         acctNo = "1000-23-52-269572";
         bank   = "농협은행"; 
         break;
         //신랑어머니
         case 4:
+        name   = "우경심";
         acctNo = "1000-23-52-269572";
         bank   = "농협은행"; 
         break;
         //신부어머니
         case 5:
+        name   = "양미희";
         acctNo = "853-02-134453";
         bank   = "농협은행"; 
         break;
@@ -148,6 +157,7 @@ export default {
         default:
         break;
       }
+        this.accountInfo.name = name;
         this.accountInfo.no   = acctNo;
         this.accountInfo.bank = bank; 
     },
@@ -155,11 +165,10 @@ export default {
       const nodash = this.accountInfo.no.replaceAll("-","");
       const acctNo = this.accountInfo.bank.replaceAll(" ","");
       const copyStr = acctNo + " " + nodash;
-      document.execCommand(copyStr);
-      alert(copyStr + "복사됨");
+      this.$copyText(copyStr).then(()=> {
+        alert(copyStr + " 가 복사 되었습니다.");
+      })
     }
-
-
   }
 };
 </script>
@@ -337,10 +346,18 @@ table{
         color:grey;
         text-decoration: none;
       }
+      .account-header{
+        display:flex;
+      }
+      .account-name{
+        text-align: left;
+        margin-left:2px;
+        width:88% ;
+      }
     }
 
     .account-div{
-      margin-top:20px;
+      margin-top:15px;
       display:flex;
       
       td{
@@ -361,5 +378,6 @@ table{
       background-color: #fbe7e7;
       color:#AB8065;
       text-align: center;
+      width:100%
     }
 </style>

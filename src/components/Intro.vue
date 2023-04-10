@@ -35,7 +35,7 @@
     <div class="day-wrap">
       <img src="~@/assets/images/intro-image-name.png" />
       <div class="day-text">
-        <p style="display:float">혼롓날까지 {{d_day+1}}일</p>
+        <p style="display:float">혼롓날까지 {{d_day}}일</p>
       </div>
     </div>
     <p class = "header2">

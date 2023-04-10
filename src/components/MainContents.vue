@@ -115,7 +115,7 @@ export default {
       color: #AB8065;
     }
     &.contents {
-      font-size: 14px;
+      font-size: 15px;
       //padding-top: 30px;
       line-height: 2.2em;
       //display: block;
