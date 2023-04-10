@@ -99,9 +99,8 @@ export default {
           left: -1px;
           display: block;
           content: "";
-          
           background-color: #fffdf9;
-          z-index: auto;
+          //z-index: 2px;
         }
         &:after {
           position: absolute;
@@ -111,20 +110,9 @@ export default {
           content: "";
          
           background-color: #fffdf9;
-          z-index:auto;
+          //z-index:2px;
         }
-        .arch {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 120px;
-          height: 360px;
-          //background-image: url("~@/assets/images/arch.png");
-          background-repeat: no-repeat;
-          background-size: 120px auto;
-          background-position: top left;
-          z-index: 10;
-        }
+
         .image {
           position: absolute;
          
@@ -135,10 +123,12 @@ export default {
           //object-fit: cover;
           img {
             border: 5px solid #ffffff;
-            transition:  3.6s;
-            //width: 296px;
+            //transition:  3.6s;
+            max-width: 535px;
+            //width: 272px;
             //width: 100%;
             height: 360px;
+            
             //object-fit: cover;
           }
         }
