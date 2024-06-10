@@ -9,6 +9,9 @@
 -> 배경음악 삽입
 -> 갤러리 이미지 12장으로 유지? 고민
 
+# 접속 페이지
+https://wedding-invitation-75a55.web.app/
+
 ## Project setup
 
 ```
